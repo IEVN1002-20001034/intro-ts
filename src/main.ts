@@ -6,6 +6,8 @@
 // import './temas-ts/05-destructura-funciones.ts'
 // import './temas-ts/06-Import-export.ts'
 import './temas-ts/07-classe.ts'
+import './temas-ts/08-herencias.ts'
+import './temas-ts/distanciaDosPuntos.ts'
 
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
