@@ -2,69 +2,35 @@ import { Distancia } from './distanciaDosPuntos';//exportar archivo para uso de 
 
 class Triangulo extends Distancia {//herencia, y agrega nueva propiedad
     private tipo: string;
+    private x3: number;
+    private y3:number;
 
-    constructor(punto1: { x: number, y: number }, punto2: { x: number, y: number}, punto3:{x:number, y:number}) {
-        super(punto1, punto2);//Super ->Llamar el constructor de la otra clase
-       // this.punto3 = punto3;
-        this.tipo = this.siEs() ? "Si es triangulo" : "No es un triángulo";
+    constructor(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number) {
+        super(x1,y1,x2,y2);//Super ->Llamar el constructor de la otra clase
+        this.x3=x3;
+        this.y3=y3;
+        this.tipo = this.siEs(x1, y1, x2, y2, x3, y3) ? "Si es triangulo" : "No es un triángulo";
     }
 
     imprimir(): void {
         super.imprimir();
-        console.log(`Resultado: ${this.tipo}`);
-        console.log(`Resultado: ${this.siEs()}`);
+        console.log(`Triangulo: ${this.tipo}`);
+        console.log(`${this.siEs(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3)}`);
     }
 
-    siEs(): boolean {
-        const d1 = this.calcularD1(puntoA.x, puntoB.x, puntoA.y, puntoB.y);
-        console.log(`Resultado: ${d1}`);
-        const d2 = this.calcularD1(puntoA.x, puntoC.x, puntoA.y, puntoC.y);
-        console.log(`Resultado: ${d2}`);
-        const d3 = this.calcularD1(puntoC.x, puntoB.x, puntoC.y, puntoB.y);
-        console.log(`Resultado: ${d3}`);
-        console.log(`Resultado: ${puntoC.x}`);
-        console.log(`Resultado: ${puntoC.y}`);
+    siEs(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): boolean {
+        const d1 = this.calcularD(x1, x2, y1, y2);
+        console.log(`Punto A a Punto B: ${d1}`);
+        const d2 = this.calcularD(x1,x3,y1,y3);
+        console.log(`Punto A a Punto C: ${d2}`);
+        const d3 = this.calcularD(x3,x2,y3,y2);
+        console.log(`Punto B a Punto C: ${d3}`);
 
         return (d1 + d2 > d3 && d2 + d3 > d1 && d1 + d3 > d2);
     }
 }
 
-const puntoA = { x: 3, y: 6 };
-const puntoB = { x: 4, y: 3};
-const puntoC = { x: 5, y: 3 };
 
 
-const triangulo = new Triangulo(puntoA, puntoB, puntoC);
+const triangulo = new Triangulo(3,6,4,3,5,3);
 triangulo.imprimir();
-
-
-//identificar triangulo
-// Importamos o usamos la clase Distancia
-// class Triangulo extends Distancia {
-
-//     constructor(punto1: { x: number, y: number }, punto2: { x: number, y: number }, punto3: { x: number, y: number }) {
-//         super(punto1, punto2, punto3); // Llamamos al constructor de la clase padre
-//     }
-
-//     public esTriangulo(): boolean {
-//         const d1 = this.calcularD1();
-//         const d2 = this.calcularD2();
-//         const d3 = this.calcularD3();
-
-
-//         if (d1 + d2 > d3 && d2 + d3 > d1 && d1 + d3 > d2) {
-//             return true; // Sí, es un triángulo
-//         } else {
-//             return false; // No es un triángulo
-//         }
-//     }
-// }
-
-// const puntoA = { x: 1, y: 2 };
-// const puntoB = { x: 7, y: 12 };
-// const puntoC = { x: -5, y: -5 };
-// const triangulo = new Triangulo(puntoA, puntoB, puntoC);
-
-// console.log(triangulo.calcularD1()); 
-// console.log(triangulo.calcularD2());
-// console.log(triangulo.calcularD3());
